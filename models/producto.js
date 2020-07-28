@@ -2,9 +2,9 @@ const mongoose= require('mongoose');
 let Schema=mongoose.Schema;
 let SchemaProducto = new Schema({
     nombre: String,
-    precion: Number,
+    precio: Number,
     cantidad:Number,
-    categoria:{type: Schema.Types.ObjectId, ref:"Categoria"}
+    categoria:String
 });
 
-module.exports = moongoose.model('Producto',SchemaProducto); 
+module.exports = mongoose.model('Producto',SchemaProducto); 
