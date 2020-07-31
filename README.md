@@ -2,9 +2,20 @@
 
 ## Indicaciones
 
-Instalar npm y descargar todas las dependecias
+- Clonar el proyecto con git clone al repositorio
 
-Ejecutar
+> git clone git@github.com:vander-idme/bodega.git
+
+Ejecutar en tu terminal
+
+- Para descargar todas las dependencias del pruyecto
+
+> npm install
+
+- Compilamos el proyecto 
 
 > npm run build
-> npm run start
+
+- Arrancamos el servidor local 
+
+> npm start
