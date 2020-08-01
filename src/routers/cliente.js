@@ -1,7 +1,7 @@
 const express= require('express');
 const router=express.Router();
-const cliente=require('../models/Cliente');
-const Cliente = require('../models/Cliente');
+const cliente=require('../../models/Cliente');
+const Cliente = require('../../models/Cliente');
 
 router.get('/cliente',async(req,res)=>{
     const cliente=await Cliente.find();
