@@ -2,20 +2,13 @@ const express= require('express');
 const router=express.Router();
 const Producto=require('../models/Producto');
 const {isAuthenticated}=require('../helpers/auth');
-/*
-    nombre: String,
-    precio: Number,
-    cantidad:Number,
-    categoria:String
-*/
-router.get('/productos',async(req,res)=>{
+
+router.get('/producto',async(req,res)=>{
     const productos=await Producto.find();
-    res.render('htmlproductos',{
-        productos
-    });
+    res.json(productos);
 });
 
-router.post('/agregar',async(req,res)=>{
+router.post('/producto',async(req,res)=>{
     const{nombre,precio,cantidad,categoria}=req.body;
 
     const newProducto= new Producto({
@@ -25,9 +18,24 @@ router.post('/agregar',async(req,res)=>{
         categoria
     });
     await newProducto.save;
-    res.redirect('/productos');
+    res.json({status:'producto recibido'});
 });
 
+
+router.put('producto/:id',async(req,res)=>{
+    const{nombre,precio,cantidad, categoria}=req.body;
+    const newProducto= {nombre,precio,cantidad,categoria};
+    await Producto.findByIdAndUpdate(req.params.id,newProducto);
+    res.json({status: 'producto actualizado'});
+})
+
+router.delete('producto/:id',async(req,res)=>{
+    await Producto.findByIdAndRemove(req.params.id);
+    res.json({status:'producto eliminado'});
+})
+
+
+/*
 router.get('/edit/:id',async(req,res)=>{
  const{id}=req.params;
  const producto= await Producto.findById(id);
@@ -47,6 +55,6 @@ router.get('/delete/:id',async(req,res)=>{
     await Producto.remove({_id: id});
     res.redirect('/productos');
 });
-
+*/
 
 module.exports=router;
